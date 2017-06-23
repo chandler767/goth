@@ -32,8 +32,7 @@ var keySet = false
 func init() {
 	err := godotenv.Load() // Load the .env file from memory.
 	if err != nil {
-		Print(err.Error())
-		log.Fatal("Error loading .env file")
+		fmt.Println("Error loading .env file")
 	}
 	key := []byte(os.Getenv("SESSION_SECRET"))
 	keySet = len(key) != 0
