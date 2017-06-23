@@ -5,7 +5,7 @@ import (
 	"errors"
 	"time"
 
-	"github.com/markbates/goth"
+	"github.com/chandler767/goth"
 )
 
 // Session stores data during the auth process with Spotify.

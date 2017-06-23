@@ -1,8 +1,8 @@
 package intercom_test
 
 import (
-	"github.com/markbates/goth"
-	"github.com/markbates/goth/providers/intercom"
+	"github.com/chandler767/goth"
+	"github.com/chandler767/goth/providers/intercom"
 	"github.com/stretchr/testify/assert"
 	"testing"
 )

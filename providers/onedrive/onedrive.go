@@ -10,9 +10,9 @@ import (
 	"net/http"
 	"net/url"
 
-	"github.com/markbates/goth"
-	"golang.org/x/oauth2"
 	"fmt"
+	"github.com/chandler767/goth"
+	"golang.org/x/oauth2"
 )
 
 const (

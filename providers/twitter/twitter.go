@@ -9,10 +9,10 @@ import (
 	"io/ioutil"
 	"net/http"
 
-	"github.com/markbates/goth"
+	"fmt"
+	"github.com/chandler767/goth"
 	"github.com/mrjones/oauth"
 	"golang.org/x/oauth2"
-	"fmt"
 )
 
 var (
@@ -30,10 +30,10 @@ var (
 // If you'd like to use authenticate instead of authorize, use NewAuthenticate instead.
 func New(clientKey, secret, callbackURL string) *Provider {
 	p := &Provider{
-		ClientKey:           clientKey,
-		Secret:              secret,
-		CallbackURL:         callbackURL,
-		providerName:        "twitter",
+		ClientKey:    clientKey,
+		Secret:       secret,
+		CallbackURL:  callbackURL,
+		providerName: "twitter",
 	}
 	p.consumer = newConsumer(p, authorizeURL)
 	return p
@@ -43,10 +43,10 @@ func New(clientKey, secret, callbackURL string) *Provider {
 // NewAuthenticate uses the authenticate URL instead of the authorize URL.
 func NewAuthenticate(clientKey, secret, callbackURL string) *Provider {
 	p := &Provider{
-		ClientKey:           clientKey,
-		Secret:              secret,
-		CallbackURL:         callbackURL,
-		providerName:        "twitter",
+		ClientKey:    clientKey,
+		Secret:       secret,
+		CallbackURL:  callbackURL,
+		providerName: "twitter",
 	}
 	p.consumer = newConsumer(p, authenticateURL)
 	return p

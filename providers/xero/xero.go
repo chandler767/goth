@@ -15,7 +15,7 @@ import (
 
 	"golang.org/x/oauth2"
 
-	"github.com/markbates/goth"
+	"github.com/chandler767/goth"
 	"github.com/mrjones/oauth"
 )
 

@@ -11,12 +11,12 @@ import (
 	"net/http"
 	"net/url"
 
-	"github.com/markbates/goth"
-	"golang.org/x/oauth2"
-	"fmt"
 	"crypto/hmac"
 	"crypto/sha256"
 	"encoding/hex"
+	"fmt"
+	"github.com/chandler767/goth"
+	"golang.org/x/oauth2"
 )
 
 const (
@@ -30,10 +30,10 @@ const (
 // one manually.
 func New(clientKey, secret, callbackURL string, scopes ...string) *Provider {
 	p := &Provider{
-		ClientKey:           clientKey,
-		Secret:              secret,
-		CallbackURL:         callbackURL,
-		providerName:        "facebook",
+		ClientKey:    clientKey,
+		Secret:       secret,
+		CallbackURL:  callbackURL,
+		providerName: "facebook",
 	}
 	p.config = newConfig(p, scopes)
 	return p
@@ -90,7 +90,7 @@ func (p *Provider) FetchUser(session goth.Session) (goth.User, error) {
 	}
 
 	// always add appsecretProof to make calls more protected
-	// https://github.com/markbates/goth/issues/96
+	// https://github.com/chandler767/goth/issues/96
 	// https://developers.facebook.com/docs/graph-api/securing-requests
 	hash := hmac.New(sha256.New, []byte(p.Secret))
 	hash.Write([]byte(sess.AccessToken))
@@ -129,7 +129,7 @@ func userFromReader(reader io.Reader, user *goth.User) error {
 		FirstName string `json:"first_name"`
 		LastName  string `json:"last_name"`
 		Link      string `json:"link"`
-		Picture struct {
+		Picture   struct {
 			Data struct {
 				URL string `json:"url"`
 			} `json:"data"`

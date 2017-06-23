@@ -8,7 +8,7 @@ import (
 	"net/http"
 	"net/url"
 
-	"github.com/markbates/goth"
+	"github.com/chandler767/goth"
 	"golang.org/x/oauth2"
 )
 
@@ -28,9 +28,9 @@ const (
 // one manually.
 func New(apiKey string, callbackURL string) *Provider {
 	p := &Provider{
-		APIKey:              apiKey,
-		CallbackURL:         callbackURL,
-		providerName:        "steam",
+		APIKey:       apiKey,
+		CallbackURL:  callbackURL,
+		providerName: "steam",
 	}
 	return p
 }

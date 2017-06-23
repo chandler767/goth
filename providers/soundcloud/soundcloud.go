@@ -11,9 +11,9 @@ import (
 	"net/url"
 	"strconv"
 
-	"github.com/markbates/goth"
-	"golang.org/x/oauth2"
 	"fmt"
+	"github.com/chandler767/goth"
+	"golang.org/x/oauth2"
 )
 
 const (
@@ -37,10 +37,10 @@ type Provider struct {
 // create one manually.
 func New(clientKey, secret, callbackURL string, scopes ...string) *Provider {
 	p := &Provider{
-		ClientKey:           clientKey,
-		Secret:              secret,
-		CallbackURL:         callbackURL,
-		providerName:        "soundcloud",
+		ClientKey:    clientKey,
+		Secret:       secret,
+		CallbackURL:  callbackURL,
+		providerName: "soundcloud",
 	}
 	p.config = newConfig(p, scopes)
 	return p

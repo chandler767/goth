@@ -3,7 +3,7 @@ Package gothic wraps common behaviour when using Goth. This makes it quick, and 
 and running with Goth. Of course, if you want complete control over how things flow, in regards
 to the authentication process, feel free and use Goth directly.
 
-See https://github.com/markbates/goth/examples/main.go to see this in action.
+See https://github.com/chandler767/goth/examples/main.go to see this in action.
 */
 package gothic
 
@@ -14,13 +14,14 @@ import (
 	"net/url"
 	"os"
 
+	"github.com/chandler767/goth"
 	"github.com/gorilla/mux"
 	"github.com/gorilla/sessions"
-	"github.com/markbates/goth"
+	"github.com/joho/godotenv"
 )
 
 // SessionName is the key used to access the session store.
-const SessionName = "_gothic_session"
+const SessionName = "_session"
 
 // Store can/should be set by applications using gothic. The default is a cookie store.
 var Store sessions.Store
@@ -29,9 +30,13 @@ var defaultStore sessions.Store
 var keySet = false
 
 func init() {
+	err := godotenv.Load() // Load the .env file from memory.
+	if err != nil {
+		Print(err.Error())
+		log.Fatal("Error loading .env file")
+	}
 	key := []byte(os.Getenv("SESSION_SECRET"))
 	keySet = len(key) != 0
-
 	cookieStore := sessions.NewCookieStore([]byte(key))
 	cookieStore.Options.HttpOnly = true
 	Store = cookieStore
@@ -46,7 +51,7 @@ as either "provider" or ":provider".
 BeginAuthHandler will redirect the user to the appropriate authentication end-point
 for the requested provider.
 
-See https://github.com/markbates/goth/examples/main.go to see this in action.
+See https://github.com/chandler767/goth/examples/main.go to see this in action.
 */
 func BeginAuthHandler(res http.ResponseWriter, req *http.Request) {
 	url, err := GetAuthURL(res, req)
@@ -130,7 +135,7 @@ process and fetches all of the basic information about the user from the provide
 It expects to be able to get the name of the provider from the query parameters
 as either "provider" or ":provider".
 
-See https://github.com/markbates/goth/examples/main.go to see this in action.
+See https://github.com/chandler767/goth/examples/main.go to see this in action.
 */
 var CompleteUserAuth = func(res http.ResponseWriter, req *http.Request) (goth.User, error) {
 	if !keySet && defaultStore == Store {
